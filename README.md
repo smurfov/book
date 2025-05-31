@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SEO Чеклист
 
-## Getting Started
+✅ - выполнено
+🔲 - не выполнено
 
-First, run the development server:
+## 1. Базовая структура и метаданные
+
+1. Настроить `generateMetadata` для каждой страницы (`title`, `description`) | 🔲
+2. Добавить Open Graph (`og:title`, `og:description`, `og:image`) | 🔲
+3. Добавить Twitter Card (если используется в соцсетях) | 🔲
+4. Проверить дубликаты `<title>` и `<meta description>` | 🔲
+5. Убедиться, что у всех страниц есть уникальные и релевантные заголовки и описания | 🔲
+
+## 2. Файлы `robots.txt` и `sitemap.xml`
+
+1. Создать `robots.txt` с разрешением индексикации | 🔲
+2. Настроить `sitemap.xml` через `next-sitemap` или кастомный скрипт | 🔲
+3. Добавить ссылку на `sitemap.xml` в `robots.txt` | 🔲
+4. Отправить карту сайта в `Google Search Console` и `Яндекс.Вебмастер` | 🔲
+
+## 3. URL и структура сайта
+
+1. Использовать ЧПУ (например `/booking/moscow-hotel`) вместо`/booking?id=123` | 🔲
+2. Избегать дублированных URL (настроить редиректы или канонические ссылки) | 🔲
+3. Добавить `canonical` ссылки на дублирующиеся страницы | 🔲
+4. Сделать навигацию логичной и легко индексируемой поисковиками | 🔲
+
+## 4. SEO изображений
+
+1. Использовать `next/image` для оптимизации изображений |
+2. Добавлять `alt` текст к каждому изображению |
+3. Имя файла изображений должно быть читаемым, например `moscow-hotel.jpg` |
+4. Оптимизировать размер картинок (схажтие, формат WebP) |
+
+## 5. Мобильная версию и UX
+
+1. Проверить адаптивность под мобильный уйстройства |
+2. Убедиться, что кнопки и элементы управления удобны для тапов |
+3. Проверить скорость загрузки страницы через Lighthouse |
+4. Устранить ошибки mobile usability в Google Search Console |
+
+## 6. Производительность
+
+1. Минифицировать JS/CSS |
+2. Ленивая загрузка контента (`loading="lazy"`) |
+3. Кэширование запросов через React Query |
+4. Использовать CDN для статики |
+5. Проверить метрики Core Web Vitals (LCP, FID, CLS) |
+
+## 7. Structured Data / Schema.org
+
+1. Добавить JSON-LD микроданные для объектов бронирования (отели, номера и т.п.) |
+2. Проверить микроданные через [Google Structured Data Testing Tool](https://developers.google.com/search/docs/appearance/structured-data) |
+
+   **Пример**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<script type="application/ld+json">
+  {`
+    {
+      "@context": "https://schema.org",
+      "@type": "Hotel",
+      "name": "Отель Москва",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Москва",
+        "streetAddress": "Ленина, 10"
+      },
+      "starRating": "4"
+    }
+  `}
+</script>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 8. Аналитика и мониторинг
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Подключить Google Analytics через `next/script` |
+2. Подключить Yandex.Metrica (если целевая аудитория — Россия) |
+3. Настроить цели (goals): успешное бронирование, клик на «Забронировать» и т.п. |
+4. Регулярно проверять показатели в GSC и Яндекс.Вебмастере |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 9. Тестирование и проверка
 
-## Learn More
+1. Проверить сайт через Screaming Frog SEO Spider |
+2. Протестировать через Google Mobile-Friendly Test |
+3. Проверить индексацию через Google Search Console |
+4. Убедиться, что нет ошибок 4xx или 5xx |
+5. Проверить наличие noindex / nofollow на тестовых/скрытых страницах |
 
-To learn more about Next.js, take a look at the following resources:
+## 10. Контентная стратегия (ВАЖНО!)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Написать уникальные описания для категорий и объектов |
+2. Добавить статьи/гиды по направлениям (например, “Где остановиться в Москве”) |
+3. Обновлять контент регулярно |
+4. Использовать ключевые слова в заголовках, подзаголовках и тексте |
+5. Внутренние ссылки между страницами (например, “Похожие отели”) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Полезные инструменты
 
-## Deploy on Vercel
+- Google Search Console – контроль индексации, ошибок, ключевых слов.
+- Yandex.Webmaster – аналогично для русскоязычного рынка.
+- Lighthouse – анализ производительности и доступности.
+- Screaming Frog SEO Spider – проверка метатегов, URL, дублей.
+- Ahrefs / SEMrush / KeyCollector – анализ ключевых слов и конкурентов.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Полезные `npm` пакеты
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install next-sitemap next-seo react-helmet helmet react-script @next-meta/seo
+```
